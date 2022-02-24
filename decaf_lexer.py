@@ -30,7 +30,7 @@ reserved = {
     'while' : 'WHILE'
 }
 
-tokens = [ 'COMMENT', 'INTEGER_CONST', 'FLOAT_CONST', 'STRING_CONST', 'ID'] + list(reserved.values())
+tokens = [ 'INTEGER_CONST', 'FLOAT_CONST', 'STRING_CONST', 'ID'] + list(reserved.values())
 
 # Token matching rules are written as regexs
 t_BOOLEAN = r'boolean'
@@ -66,14 +66,19 @@ def t_COMMENT(t):
     r'(\/\/[^\n]*)|(\/\*.*?(?=\*\/)\*\/)'
     pass
 
-def t_INTEGER_CONST(t):
-    r'-?\d+'
-    t.value = int(t.value)
-    return t
+#def t_INTEGER_CONST(t):
+#    r'-?\d+'
+#    t.value = int(t.value)
+#    return t
 
 def t_FLOAT_CONST(t):
     r'-?\d+\.\d+([e|E](\-|\+?)\d+)?'
     t.value = float(t.value)
+    return t
+
+def t_INTEGER_CONST(t):
+    r'-?\d+'
+    t.value =  int(t.value)
     return t
 
 def t_STRING_CONST(t):
@@ -94,7 +99,7 @@ def t_error(t):
      print('Illegal character {} at line {}'.format(t.value[0], t.lineno))
      exit(1)
 
-literals = [ '+','-','*','/', '{', '}', '[', ']', '(', ')' , '.', ';']
+literals = [ '+','-','*','/', '{', '}', '[', ']', '(', ')' , ',', ';', '.' ]
 
 # Build the lexer object
 lexer = lex.lex()

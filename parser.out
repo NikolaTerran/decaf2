@@ -1,0 +1,1816 @@
+Created by PLY (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DO
+
+Grammar
+
+Rule 0     S' -> class_decl
+Rule 1     class_decl -> CLASS ID extends { class_body_decl }
+Rule 2     extends -> EXTENDS ID
+Rule 3     extends -> empty
+Rule 4     class_body_decl -> field_decl class_body_decl
+Rule 5     class_body_decl -> field_decl
+Rule 6     class_body_decl -> method_decl class_body_decl
+Rule 7     class_body_decl -> method_decl
+Rule 8     class_body_decl -> constructor_decl class_body_decl
+Rule 9     class_body_decl -> constructor_decl
+Rule 10    method_decl -> modifier type ID ( formals ) block
+Rule 11    method_decl -> modifier type ID ( ) block
+Rule 12    method_decl -> modifier VOID ID ( formals ) block
+Rule 13    method_decl -> modifier VOID ID ( ) block
+Rule 14    constructor_decl -> modifier ID ( formals ) block
+Rule 15    constructor_decl -> modifier ID ( ) block
+Rule 16    block -> { stmts }
+Rule 17    block -> { }
+Rule 18    stmts -> stmt stmts
+Rule 19    stmts -> stmt
+Rule 20    stmt -> IF ( expr ) stmt ELSE stmt
+Rule 21    stmt -> IF ( expr ) stmt
+Rule 22    stmt -> WHILE ( expr ) stmt
+Rule 23    stmt -> FOR ( ; expr ; ) stmt
+Rule 24    stmt -> RETURN expr ;
+Rule 25    stmt -> BREAK ;
+Rule 26    stmt -> CONTINUE ;
+Rule 27    stmt -> block
+Rule 28    stmt -> var_decl
+Rule 29    stmt -> ;
+Rule 30    expr -> primary
+Rule 31    primary -> literal
+Rule 32    primary -> THIS
+Rule 33    primary -> SUPER
+Rule 34    primary -> ( expr )
+Rule 35    primary -> NEW ID ( )
+Rule 36    literal -> INTEGER_CONST
+Rule 37    literal -> FLOAT_CONST
+Rule 38    literal -> STRING_CONST
+Rule 39    literal -> NULL
+Rule 40    literal -> TRUE
+Rule 41    literal -> FALSE
+Rule 42    formals -> formal_param , formals
+Rule 43    formals -> formal_param
+Rule 44    formal_param -> type variable
+Rule 45    field_decl -> modifier var_decl
+Rule 46    modifier -> access STATIC
+Rule 47    modifier -> access
+Rule 48    access -> PUBLIC
+Rule 49    access -> PRIVATE
+Rule 50    access -> empty
+Rule 51    var_decl -> type variables ;
+Rule 52    type -> INT
+Rule 53    type -> FLOAT
+Rule 54    type -> BOOLEAN
+Rule 55    type -> ID
+Rule 56    variables -> variable , variables
+Rule 57    variables -> variable
+Rule 58    variable -> ID
+Rule 59    empty -> <empty>
+
+Terminals, with rules where they appear
+
+(                    : 10 11 12 13 14 15 20 21 22 23 34 35
+)                    : 10 11 12 13 14 15 20 21 22 23 34 35
+,                    : 42 56
+;                    : 23 23 24 25 26 29 51
+BOOLEAN              : 54
+BREAK                : 25
+CLASS                : 1
+CONTINUE             : 26
+DO                   : 
+ELSE                 : 20
+EXTENDS              : 2
+FALSE                : 41
+FLOAT                : 53
+FLOAT_CONST          : 37
+FOR                  : 23
+ID                   : 1 2 10 11 12 13 14 15 35 55 58
+IF                   : 20 21
+INT                  : 52
+INTEGER_CONST        : 36
+NEW                  : 35
+NULL                 : 39
+PRIVATE              : 49
+PUBLIC               : 48
+RETURN               : 24
+STATIC               : 46
+STRING_CONST         : 38
+SUPER                : 33
+THIS                 : 32
+TRUE                 : 40
+VOID                 : 12 13
+WHILE                : 22
+error                : 
+{                    : 1 16 17
+}                    : 1 16 17
+
+Nonterminals, with rules where they appear
+
+access               : 46 47
+block                : 10 11 12 13 14 15 27
+class_body_decl      : 1 4 6 8
+class_decl           : 0
+constructor_decl     : 8 9
+empty                : 3 50
+expr                 : 20 21 22 23 24 34
+extends              : 1
+field_decl           : 4 5
+formal_param         : 42 43
+formals              : 10 12 14 42
+literal              : 31
+method_decl          : 6 7
+modifier             : 10 11 12 13 14 15 45
+primary              : 30
+stmt                 : 18 19 20 20 21 22 23
+stmts                : 16 18
+type                 : 10 11 44 51
+var_decl             : 28 45
+variable             : 44 56 57
+variables            : 51 56
+
+
+state 0
+
+    (0) S' -> . class_decl
+    (1) class_decl -> . CLASS ID extends { class_body_decl }
+
+    CLASS           shift and go to state 2
+
+    class_decl                     shift and go to state 1
+
+state 1
+
+    (0) S' -> class_decl .
+
+
+
+state 2
+
+    (1) class_decl -> CLASS . ID extends { class_body_decl }
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) class_decl -> CLASS ID . extends { class_body_decl }
+    (2) extends -> . EXTENDS ID
+    (3) extends -> . empty
+    (59) empty -> .
+
+    EXTENDS         shift and go to state 5
+    {               reduce using rule 59 (empty -> .)
+
+    extends                        shift and go to state 4
+    empty                          shift and go to state 6
+
+state 4
+
+    (1) class_decl -> CLASS ID extends . { class_body_decl }
+
+    {               shift and go to state 7
+
+
+state 5
+
+    (2) extends -> EXTENDS . ID
+
+    ID              shift and go to state 8
+
+
+state 6
+
+    (3) extends -> empty .
+
+    {               reduce using rule 3 (extends -> empty .)
+
+
+state 7
+
+    (1) class_decl -> CLASS ID extends { . class_body_decl }
+    (4) class_body_decl -> . field_decl class_body_decl
+    (5) class_body_decl -> . field_decl
+    (6) class_body_decl -> . method_decl class_body_decl
+    (7) class_body_decl -> . method_decl
+    (8) class_body_decl -> . constructor_decl class_body_decl
+    (9) class_body_decl -> . constructor_decl
+    (45) field_decl -> . modifier var_decl
+    (10) method_decl -> . modifier type ID ( formals ) block
+    (11) method_decl -> . modifier type ID ( ) block
+    (12) method_decl -> . modifier VOID ID ( formals ) block
+    (13) method_decl -> . modifier VOID ID ( ) block
+    (14) constructor_decl -> . modifier ID ( formals ) block
+    (15) constructor_decl -> . modifier ID ( ) block
+    (46) modifier -> . access STATIC
+    (47) modifier -> . access
+    (48) access -> . PUBLIC
+    (49) access -> . PRIVATE
+    (50) access -> . empty
+    (59) empty -> .
+
+    PUBLIC          shift and go to state 15
+    PRIVATE         shift and go to state 16
+    STATIC          reduce using rule 59 (empty -> .)
+    VOID            reduce using rule 59 (empty -> .)
+    ID              reduce using rule 59 (empty -> .)
+    INT             reduce using rule 59 (empty -> .)
+    FLOAT           reduce using rule 59 (empty -> .)
+    BOOLEAN         reduce using rule 59 (empty -> .)
+
+    class_body_decl                shift and go to state 9
+    field_decl                     shift and go to state 10
+    method_decl                    shift and go to state 11
+    constructor_decl               shift and go to state 12
+    modifier                       shift and go to state 13
+    access                         shift and go to state 14
+    empty                          shift and go to state 17
+
+state 8
+
+    (2) extends -> EXTENDS ID .
+
+    {               reduce using rule 2 (extends -> EXTENDS ID .)
+
+
+state 9
+
+    (1) class_decl -> CLASS ID extends { class_body_decl . }
+
+    }               shift and go to state 18
+
+
+state 10
+
+    (4) class_body_decl -> field_decl . class_body_decl
+    (5) class_body_decl -> field_decl .
+    (4) class_body_decl -> . field_decl class_body_decl
+    (5) class_body_decl -> . field_decl
+    (6) class_body_decl -> . method_decl class_body_decl
+    (7) class_body_decl -> . method_decl
+    (8) class_body_decl -> . constructor_decl class_body_decl
+    (9) class_body_decl -> . constructor_decl
+    (45) field_decl -> . modifier var_decl
+    (10) method_decl -> . modifier type ID ( formals ) block
+    (11) method_decl -> . modifier type ID ( ) block
+    (12) method_decl -> . modifier VOID ID ( formals ) block
+    (13) method_decl -> . modifier VOID ID ( ) block
+    (14) constructor_decl -> . modifier ID ( formals ) block
+    (15) constructor_decl -> . modifier ID ( ) block
+    (46) modifier -> . access STATIC
+    (47) modifier -> . access
+    (48) access -> . PUBLIC
+    (49) access -> . PRIVATE
+    (50) access -> . empty
+    (59) empty -> .
+
+    }               reduce using rule 5 (class_body_decl -> field_decl .)
+    PUBLIC          shift and go to state 15
+    PRIVATE         shift and go to state 16
+    STATIC          reduce using rule 59 (empty -> .)
+    VOID            reduce using rule 59 (empty -> .)
+    ID              reduce using rule 59 (empty -> .)
+    INT             reduce using rule 59 (empty -> .)
+    FLOAT           reduce using rule 59 (empty -> .)
+    BOOLEAN         reduce using rule 59 (empty -> .)
+
+    field_decl                     shift and go to state 10
+    class_body_decl                shift and go to state 19
+    method_decl                    shift and go to state 11
+    constructor_decl               shift and go to state 12
+    modifier                       shift and go to state 13
+    access                         shift and go to state 14
+    empty                          shift and go to state 17
+
+state 11
+
+    (6) class_body_decl -> method_decl . class_body_decl
+    (7) class_body_decl -> method_decl .
+    (4) class_body_decl -> . field_decl class_body_decl
+    (5) class_body_decl -> . field_decl
+    (6) class_body_decl -> . method_decl class_body_decl
+    (7) class_body_decl -> . method_decl
+    (8) class_body_decl -> . constructor_decl class_body_decl
+    (9) class_body_decl -> . constructor_decl
+    (45) field_decl -> . modifier var_decl
+    (10) method_decl -> . modifier type ID ( formals ) block
+    (11) method_decl -> . modifier type ID ( ) block
+    (12) method_decl -> . modifier VOID ID ( formals ) block
+    (13) method_decl -> . modifier VOID ID ( ) block
+    (14) constructor_decl -> . modifier ID ( formals ) block
+    (15) constructor_decl -> . modifier ID ( ) block
+    (46) modifier -> . access STATIC
+    (47) modifier -> . access
+    (48) access -> . PUBLIC
+    (49) access -> . PRIVATE
+    (50) access -> . empty
+    (59) empty -> .
+
+    }               reduce using rule 7 (class_body_decl -> method_decl .)
+    PUBLIC          shift and go to state 15
+    PRIVATE         shift and go to state 16
+    STATIC          reduce using rule 59 (empty -> .)
+    VOID            reduce using rule 59 (empty -> .)
+    ID              reduce using rule 59 (empty -> .)
+    INT             reduce using rule 59 (empty -> .)
+    FLOAT           reduce using rule 59 (empty -> .)
+    BOOLEAN         reduce using rule 59 (empty -> .)
+
+    method_decl                    shift and go to state 11
+    class_body_decl                shift and go to state 20
+    field_decl                     shift and go to state 10
+    constructor_decl               shift and go to state 12
+    modifier                       shift and go to state 13
+    access                         shift and go to state 14
+    empty                          shift and go to state 17
+
+state 12
+
+    (8) class_body_decl -> constructor_decl . class_body_decl
+    (9) class_body_decl -> constructor_decl .
+    (4) class_body_decl -> . field_decl class_body_decl
+    (5) class_body_decl -> . field_decl
+    (6) class_body_decl -> . method_decl class_body_decl
+    (7) class_body_decl -> . method_decl
+    (8) class_body_decl -> . constructor_decl class_body_decl
+    (9) class_body_decl -> . constructor_decl
+    (45) field_decl -> . modifier var_decl
+    (10) method_decl -> . modifier type ID ( formals ) block
+    (11) method_decl -> . modifier type ID ( ) block
+    (12) method_decl -> . modifier VOID ID ( formals ) block
+    (13) method_decl -> . modifier VOID ID ( ) block
+    (14) constructor_decl -> . modifier ID ( formals ) block
+    (15) constructor_decl -> . modifier ID ( ) block
+    (46) modifier -> . access STATIC
+    (47) modifier -> . access
+    (48) access -> . PUBLIC
+    (49) access -> . PRIVATE
+    (50) access -> . empty
+    (59) empty -> .
+
+    }               reduce using rule 9 (class_body_decl -> constructor_decl .)
+    PUBLIC          shift and go to state 15
+    PRIVATE         shift and go to state 16
+    STATIC          reduce using rule 59 (empty -> .)
+    VOID            reduce using rule 59 (empty -> .)
+    ID              reduce using rule 59 (empty -> .)
+    INT             reduce using rule 59 (empty -> .)
+    FLOAT           reduce using rule 59 (empty -> .)
+    BOOLEAN         reduce using rule 59 (empty -> .)
+
+    constructor_decl               shift and go to state 12
+    class_body_decl                shift and go to state 21
+    field_decl                     shift and go to state 10
+    method_decl                    shift and go to state 11
+    modifier                       shift and go to state 13
+    access                         shift and go to state 14
+    empty                          shift and go to state 17
+
+state 13
+
+    (45) field_decl -> modifier . var_decl
+    (10) method_decl -> modifier . type ID ( formals ) block
+    (11) method_decl -> modifier . type ID ( ) block
+    (12) method_decl -> modifier . VOID ID ( formals ) block
+    (13) method_decl -> modifier . VOID ID ( ) block
+    (14) constructor_decl -> modifier . ID ( formals ) block
+    (15) constructor_decl -> modifier . ID ( ) block
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    VOID            shift and go to state 25
+    ID              shift and go to state 24
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+
+    var_decl                       shift and go to state 22
+    type                           shift and go to state 23
+
+state 14
+
+    (46) modifier -> access . STATIC
+    (47) modifier -> access .
+
+    STATIC          shift and go to state 29
+    VOID            reduce using rule 47 (modifier -> access .)
+    ID              reduce using rule 47 (modifier -> access .)
+    INT             reduce using rule 47 (modifier -> access .)
+    FLOAT           reduce using rule 47 (modifier -> access .)
+    BOOLEAN         reduce using rule 47 (modifier -> access .)
+
+
+state 15
+
+    (48) access -> PUBLIC .
+
+    STATIC          reduce using rule 48 (access -> PUBLIC .)
+    VOID            reduce using rule 48 (access -> PUBLIC .)
+    ID              reduce using rule 48 (access -> PUBLIC .)
+    INT             reduce using rule 48 (access -> PUBLIC .)
+    FLOAT           reduce using rule 48 (access -> PUBLIC .)
+    BOOLEAN         reduce using rule 48 (access -> PUBLIC .)
+
+
+state 16
+
+    (49) access -> PRIVATE .
+
+    STATIC          reduce using rule 49 (access -> PRIVATE .)
+    VOID            reduce using rule 49 (access -> PRIVATE .)
+    ID              reduce using rule 49 (access -> PRIVATE .)
+    INT             reduce using rule 49 (access -> PRIVATE .)
+    FLOAT           reduce using rule 49 (access -> PRIVATE .)
+    BOOLEAN         reduce using rule 49 (access -> PRIVATE .)
+
+
+state 17
+
+    (50) access -> empty .
+
+    STATIC          reduce using rule 50 (access -> empty .)
+    VOID            reduce using rule 50 (access -> empty .)
+    ID              reduce using rule 50 (access -> empty .)
+    INT             reduce using rule 50 (access -> empty .)
+    FLOAT           reduce using rule 50 (access -> empty .)
+    BOOLEAN         reduce using rule 50 (access -> empty .)
+
+
+state 18
+
+    (1) class_decl -> CLASS ID extends { class_body_decl } .
+
+    $end            reduce using rule 1 (class_decl -> CLASS ID extends { class_body_decl } .)
+
+
+state 19
+
+    (4) class_body_decl -> field_decl class_body_decl .
+
+    }               reduce using rule 4 (class_body_decl -> field_decl class_body_decl .)
+
+
+state 20
+
+    (6) class_body_decl -> method_decl class_body_decl .
+
+    }               reduce using rule 6 (class_body_decl -> method_decl class_body_decl .)
+
+
+state 21
+
+    (8) class_body_decl -> constructor_decl class_body_decl .
+
+    }               reduce using rule 8 (class_body_decl -> constructor_decl class_body_decl .)
+
+
+state 22
+
+    (45) field_decl -> modifier var_decl .
+
+    PUBLIC          reduce using rule 45 (field_decl -> modifier var_decl .)
+    PRIVATE         reduce using rule 45 (field_decl -> modifier var_decl .)
+    VOID            reduce using rule 45 (field_decl -> modifier var_decl .)
+    ID              reduce using rule 45 (field_decl -> modifier var_decl .)
+    INT             reduce using rule 45 (field_decl -> modifier var_decl .)
+    FLOAT           reduce using rule 45 (field_decl -> modifier var_decl .)
+    BOOLEAN         reduce using rule 45 (field_decl -> modifier var_decl .)
+    STATIC          reduce using rule 45 (field_decl -> modifier var_decl .)
+    }               reduce using rule 45 (field_decl -> modifier var_decl .)
+
+
+state 23
+
+    (10) method_decl -> modifier type . ID ( formals ) block
+    (11) method_decl -> modifier type . ID ( ) block
+    (51) var_decl -> type . variables ;
+    (56) variables -> . variable , variables
+    (57) variables -> . variable
+    (58) variable -> . ID
+
+    ID              shift and go to state 30
+
+    variables                      shift and go to state 31
+    variable                       shift and go to state 32
+
+state 24
+
+    (14) constructor_decl -> modifier ID . ( formals ) block
+    (15) constructor_decl -> modifier ID . ( ) block
+    (55) type -> ID .
+
+    (               shift and go to state 33
+    ID              reduce using rule 55 (type -> ID .)
+
+
+state 25
+
+    (12) method_decl -> modifier VOID . ID ( formals ) block
+    (13) method_decl -> modifier VOID . ID ( ) block
+
+    ID              shift and go to state 34
+
+
+state 26
+
+    (52) type -> INT .
+
+    ID              reduce using rule 52 (type -> INT .)
+
+
+state 27
+
+    (53) type -> FLOAT .
+
+    ID              reduce using rule 53 (type -> FLOAT .)
+
+
+state 28
+
+    (54) type -> BOOLEAN .
+
+    ID              reduce using rule 54 (type -> BOOLEAN .)
+
+
+state 29
+
+    (46) modifier -> access STATIC .
+
+    VOID            reduce using rule 46 (modifier -> access STATIC .)
+    ID              reduce using rule 46 (modifier -> access STATIC .)
+    INT             reduce using rule 46 (modifier -> access STATIC .)
+    FLOAT           reduce using rule 46 (modifier -> access STATIC .)
+    BOOLEAN         reduce using rule 46 (modifier -> access STATIC .)
+
+
+state 30
+
+    (10) method_decl -> modifier type ID . ( formals ) block
+    (11) method_decl -> modifier type ID . ( ) block
+    (58) variable -> ID .
+
+    (               shift and go to state 35
+    ,               reduce using rule 58 (variable -> ID .)
+    ;               reduce using rule 58 (variable -> ID .)
+
+
+state 31
+
+    (51) var_decl -> type variables . ;
+
+    ;               shift and go to state 36
+
+
+state 32
+
+    (56) variables -> variable . , variables
+    (57) variables -> variable .
+
+    ,               shift and go to state 37
+    ;               reduce using rule 57 (variables -> variable .)
+
+
+state 33
+
+    (14) constructor_decl -> modifier ID ( . formals ) block
+    (15) constructor_decl -> modifier ID ( . ) block
+    (42) formals -> . formal_param , formals
+    (43) formals -> . formal_param
+    (44) formal_param -> . type variable
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    )               shift and go to state 40
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    formals                        shift and go to state 39
+    formal_param                   shift and go to state 41
+    type                           shift and go to state 42
+
+state 34
+
+    (12) method_decl -> modifier VOID ID . ( formals ) block
+    (13) method_decl -> modifier VOID ID . ( ) block
+
+    (               shift and go to state 43
+
+
+state 35
+
+    (10) method_decl -> modifier type ID ( . formals ) block
+    (11) method_decl -> modifier type ID ( . ) block
+    (42) formals -> . formal_param , formals
+    (43) formals -> . formal_param
+    (44) formal_param -> . type variable
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    )               shift and go to state 45
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    type                           shift and go to state 42
+    formals                        shift and go to state 44
+    formal_param                   shift and go to state 41
+
+state 36
+
+    (51) var_decl -> type variables ; .
+
+    PUBLIC          reduce using rule 51 (var_decl -> type variables ; .)
+    PRIVATE         reduce using rule 51 (var_decl -> type variables ; .)
+    VOID            reduce using rule 51 (var_decl -> type variables ; .)
+    ID              reduce using rule 51 (var_decl -> type variables ; .)
+    INT             reduce using rule 51 (var_decl -> type variables ; .)
+    FLOAT           reduce using rule 51 (var_decl -> type variables ; .)
+    BOOLEAN         reduce using rule 51 (var_decl -> type variables ; .)
+    STATIC          reduce using rule 51 (var_decl -> type variables ; .)
+    }               reduce using rule 51 (var_decl -> type variables ; .)
+    IF              reduce using rule 51 (var_decl -> type variables ; .)
+    WHILE           reduce using rule 51 (var_decl -> type variables ; .)
+    FOR             reduce using rule 51 (var_decl -> type variables ; .)
+    RETURN          reduce using rule 51 (var_decl -> type variables ; .)
+    BREAK           reduce using rule 51 (var_decl -> type variables ; .)
+    CONTINUE        reduce using rule 51 (var_decl -> type variables ; .)
+    ;               reduce using rule 51 (var_decl -> type variables ; .)
+    {               reduce using rule 51 (var_decl -> type variables ; .)
+    ELSE            reduce using rule 51 (var_decl -> type variables ; .)
+
+
+state 37
+
+    (56) variables -> variable , . variables
+    (56) variables -> . variable , variables
+    (57) variables -> . variable
+    (58) variable -> . ID
+
+    ID              shift and go to state 47
+
+    variable                       shift and go to state 32
+    variables                      shift and go to state 46
+
+state 38
+
+    (55) type -> ID .
+
+    ID              reduce using rule 55 (type -> ID .)
+
+
+state 39
+
+    (14) constructor_decl -> modifier ID ( formals . ) block
+
+    )               shift and go to state 48
+
+
+state 40
+
+    (15) constructor_decl -> modifier ID ( ) . block
+    (16) block -> . { stmts }
+    (17) block -> . { }
+
+    {               shift and go to state 50
+
+    block                          shift and go to state 49
+
+state 41
+
+    (42) formals -> formal_param . , formals
+    (43) formals -> formal_param .
+
+    ,               shift and go to state 51
+    )               reduce using rule 43 (formals -> formal_param .)
+
+
+state 42
+
+    (44) formal_param -> type . variable
+    (58) variable -> . ID
+
+    ID              shift and go to state 47
+
+    variable                       shift and go to state 52
+
+state 43
+
+    (12) method_decl -> modifier VOID ID ( . formals ) block
+    (13) method_decl -> modifier VOID ID ( . ) block
+    (42) formals -> . formal_param , formals
+    (43) formals -> . formal_param
+    (44) formal_param -> . type variable
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    )               shift and go to state 54
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    formals                        shift and go to state 53
+    formal_param                   shift and go to state 41
+    type                           shift and go to state 42
+
+state 44
+
+    (10) method_decl -> modifier type ID ( formals . ) block
+
+    )               shift and go to state 55
+
+
+state 45
+
+    (11) method_decl -> modifier type ID ( ) . block
+    (16) block -> . { stmts }
+    (17) block -> . { }
+
+    {               shift and go to state 50
+
+    block                          shift and go to state 56
+
+state 46
+
+    (56) variables -> variable , variables .
+
+    ;               reduce using rule 56 (variables -> variable , variables .)
+
+
+state 47
+
+    (58) variable -> ID .
+
+    ,               reduce using rule 58 (variable -> ID .)
+    ;               reduce using rule 58 (variable -> ID .)
+    )               reduce using rule 58 (variable -> ID .)
+
+
+state 48
+
+    (14) constructor_decl -> modifier ID ( formals ) . block
+    (16) block -> . { stmts }
+    (17) block -> . { }
+
+    {               shift and go to state 50
+
+    block                          shift and go to state 57
+
+state 49
+
+    (15) constructor_decl -> modifier ID ( ) block .
+
+    PUBLIC          reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    PRIVATE         reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    VOID            reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    ID              reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    INT             reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    FLOAT           reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    BOOLEAN         reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    STATIC          reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+    }               reduce using rule 15 (constructor_decl -> modifier ID ( ) block .)
+
+
+state 50
+
+    (16) block -> { . stmts }
+    (17) block -> { . }
+    (18) stmts -> . stmt stmts
+    (19) stmts -> . stmt
+    (20) stmt -> . IF ( expr ) stmt ELSE stmt
+    (21) stmt -> . IF ( expr ) stmt
+    (22) stmt -> . WHILE ( expr ) stmt
+    (23) stmt -> . FOR ( ; expr ; ) stmt
+    (24) stmt -> . RETURN expr ;
+    (25) stmt -> . BREAK ;
+    (26) stmt -> . CONTINUE ;
+    (27) stmt -> . block
+    (28) stmt -> . var_decl
+    (29) stmt -> . ;
+    (16) block -> . { stmts }
+    (17) block -> . { }
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    }               shift and go to state 59
+    IF              shift and go to state 61
+    WHILE           shift and go to state 62
+    FOR             shift and go to state 63
+    RETURN          shift and go to state 65
+    BREAK           shift and go to state 66
+    CONTINUE        shift and go to state 67
+    ;               shift and go to state 64
+    {               shift and go to state 50
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    stmts                          shift and go to state 58
+    stmt                           shift and go to state 60
+    block                          shift and go to state 68
+    var_decl                       shift and go to state 69
+    type                           shift and go to state 70
+
+state 51
+
+    (42) formals -> formal_param , . formals
+    (42) formals -> . formal_param , formals
+    (43) formals -> . formal_param
+    (44) formal_param -> . type variable
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    formal_param                   shift and go to state 41
+    formals                        shift and go to state 71
+    type                           shift and go to state 42
+
+state 52
+
+    (44) formal_param -> type variable .
+
+    ,               reduce using rule 44 (formal_param -> type variable .)
+    )               reduce using rule 44 (formal_param -> type variable .)
+
+
+state 53
+
+    (12) method_decl -> modifier VOID ID ( formals . ) block
+
+    )               shift and go to state 72
+
+
+state 54
+
+    (13) method_decl -> modifier VOID ID ( ) . block
+    (16) block -> . { stmts }
+    (17) block -> . { }
+
+    {               shift and go to state 50
+
+    block                          shift and go to state 73
+
+state 55
+
+    (10) method_decl -> modifier type ID ( formals ) . block
+    (16) block -> . { stmts }
+    (17) block -> . { }
+
+    {               shift and go to state 50
+
+    block                          shift and go to state 74
+
+state 56
+
+    (11) method_decl -> modifier type ID ( ) block .
+
+    PUBLIC          reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    PRIVATE         reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    VOID            reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    ID              reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    INT             reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    FLOAT           reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    BOOLEAN         reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    STATIC          reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+    }               reduce using rule 11 (method_decl -> modifier type ID ( ) block .)
+
+
+state 57
+
+    (14) constructor_decl -> modifier ID ( formals ) block .
+
+    PUBLIC          reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    PRIVATE         reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    VOID            reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    ID              reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    INT             reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    FLOAT           reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    BOOLEAN         reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    STATIC          reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+    }               reduce using rule 14 (constructor_decl -> modifier ID ( formals ) block .)
+
+
+state 58
+
+    (16) block -> { stmts . }
+
+    }               shift and go to state 75
+
+
+state 59
+
+    (17) block -> { } .
+
+    PUBLIC          reduce using rule 17 (block -> { } .)
+    PRIVATE         reduce using rule 17 (block -> { } .)
+    VOID            reduce using rule 17 (block -> { } .)
+    ID              reduce using rule 17 (block -> { } .)
+    INT             reduce using rule 17 (block -> { } .)
+    FLOAT           reduce using rule 17 (block -> { } .)
+    BOOLEAN         reduce using rule 17 (block -> { } .)
+    STATIC          reduce using rule 17 (block -> { } .)
+    }               reduce using rule 17 (block -> { } .)
+    IF              reduce using rule 17 (block -> { } .)
+    WHILE           reduce using rule 17 (block -> { } .)
+    FOR             reduce using rule 17 (block -> { } .)
+    RETURN          reduce using rule 17 (block -> { } .)
+    BREAK           reduce using rule 17 (block -> { } .)
+    CONTINUE        reduce using rule 17 (block -> { } .)
+    ;               reduce using rule 17 (block -> { } .)
+    {               reduce using rule 17 (block -> { } .)
+    ELSE            reduce using rule 17 (block -> { } .)
+
+
+state 60
+
+    (18) stmts -> stmt . stmts
+    (19) stmts -> stmt .
+    (18) stmts -> . stmt stmts
+    (19) stmts -> . stmt
+    (20) stmt -> . IF ( expr ) stmt ELSE stmt
+    (21) stmt -> . IF ( expr ) stmt
+    (22) stmt -> . WHILE ( expr ) stmt
+    (23) stmt -> . FOR ( ; expr ; ) stmt
+    (24) stmt -> . RETURN expr ;
+    (25) stmt -> . BREAK ;
+    (26) stmt -> . CONTINUE ;
+    (27) stmt -> . block
+    (28) stmt -> . var_decl
+    (29) stmt -> . ;
+    (16) block -> . { stmts }
+    (17) block -> . { }
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    }               reduce using rule 19 (stmts -> stmt .)
+    IF              shift and go to state 61
+    WHILE           shift and go to state 62
+    FOR             shift and go to state 63
+    RETURN          shift and go to state 65
+    BREAK           shift and go to state 66
+    CONTINUE        shift and go to state 67
+    ;               shift and go to state 64
+    {               shift and go to state 50
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    stmt                           shift and go to state 60
+    stmts                          shift and go to state 76
+    block                          shift and go to state 68
+    var_decl                       shift and go to state 69
+    type                           shift and go to state 70
+
+state 61
+
+    (20) stmt -> IF . ( expr ) stmt ELSE stmt
+    (21) stmt -> IF . ( expr ) stmt
+
+    (               shift and go to state 77
+
+
+state 62
+
+    (22) stmt -> WHILE . ( expr ) stmt
+
+    (               shift and go to state 78
+
+
+state 63
+
+    (23) stmt -> FOR . ( ; expr ; ) stmt
+
+    (               shift and go to state 79
+
+
+state 64
+
+    (29) stmt -> ; .
+
+    IF              reduce using rule 29 (stmt -> ; .)
+    WHILE           reduce using rule 29 (stmt -> ; .)
+    FOR             reduce using rule 29 (stmt -> ; .)
+    RETURN          reduce using rule 29 (stmt -> ; .)
+    BREAK           reduce using rule 29 (stmt -> ; .)
+    CONTINUE        reduce using rule 29 (stmt -> ; .)
+    ;               reduce using rule 29 (stmt -> ; .)
+    {               reduce using rule 29 (stmt -> ; .)
+    INT             reduce using rule 29 (stmt -> ; .)
+    FLOAT           reduce using rule 29 (stmt -> ; .)
+    BOOLEAN         reduce using rule 29 (stmt -> ; .)
+    ID              reduce using rule 29 (stmt -> ; .)
+    }               reduce using rule 29 (stmt -> ; .)
+    ELSE            reduce using rule 29 (stmt -> ; .)
+
+
+state 65
+
+    (24) stmt -> RETURN . expr ;
+    (30) expr -> . primary
+    (31) primary -> . literal
+    (32) primary -> . THIS
+    (33) primary -> . SUPER
+    (34) primary -> . ( expr )
+    (35) primary -> . NEW ID ( )
+    (36) literal -> . INTEGER_CONST
+    (37) literal -> . FLOAT_CONST
+    (38) literal -> . STRING_CONST
+    (39) literal -> . NULL
+    (40) literal -> . TRUE
+    (41) literal -> . FALSE
+
+    THIS            shift and go to state 83
+    SUPER           shift and go to state 84
+    (               shift and go to state 85
+    NEW             shift and go to state 86
+    INTEGER_CONST   shift and go to state 87
+    FLOAT_CONST     shift and go to state 88
+    STRING_CONST    shift and go to state 89
+    NULL            shift and go to state 90
+    TRUE            shift and go to state 91
+    FALSE           shift and go to state 92
+
+    expr                           shift and go to state 80
+    primary                        shift and go to state 81
+    literal                        shift and go to state 82
+
+state 66
+
+    (25) stmt -> BREAK . ;
+
+    ;               shift and go to state 93
+
+
+state 67
+
+    (26) stmt -> CONTINUE . ;
+
+    ;               shift and go to state 94
+
+
+state 68
+
+    (27) stmt -> block .
+
+    IF              reduce using rule 27 (stmt -> block .)
+    WHILE           reduce using rule 27 (stmt -> block .)
+    FOR             reduce using rule 27 (stmt -> block .)
+    RETURN          reduce using rule 27 (stmt -> block .)
+    BREAK           reduce using rule 27 (stmt -> block .)
+    CONTINUE        reduce using rule 27 (stmt -> block .)
+    ;               reduce using rule 27 (stmt -> block .)
+    {               reduce using rule 27 (stmt -> block .)
+    INT             reduce using rule 27 (stmt -> block .)
+    FLOAT           reduce using rule 27 (stmt -> block .)
+    BOOLEAN         reduce using rule 27 (stmt -> block .)
+    ID              reduce using rule 27 (stmt -> block .)
+    }               reduce using rule 27 (stmt -> block .)
+    ELSE            reduce using rule 27 (stmt -> block .)
+
+
+state 69
+
+    (28) stmt -> var_decl .
+
+    IF              reduce using rule 28 (stmt -> var_decl .)
+    WHILE           reduce using rule 28 (stmt -> var_decl .)
+    FOR             reduce using rule 28 (stmt -> var_decl .)
+    RETURN          reduce using rule 28 (stmt -> var_decl .)
+    BREAK           reduce using rule 28 (stmt -> var_decl .)
+    CONTINUE        reduce using rule 28 (stmt -> var_decl .)
+    ;               reduce using rule 28 (stmt -> var_decl .)
+    {               reduce using rule 28 (stmt -> var_decl .)
+    INT             reduce using rule 28 (stmt -> var_decl .)
+    FLOAT           reduce using rule 28 (stmt -> var_decl .)
+    BOOLEAN         reduce using rule 28 (stmt -> var_decl .)
+    ID              reduce using rule 28 (stmt -> var_decl .)
+    }               reduce using rule 28 (stmt -> var_decl .)
+    ELSE            reduce using rule 28 (stmt -> var_decl .)
+
+
+state 70
+
+    (51) var_decl -> type . variables ;
+    (56) variables -> . variable , variables
+    (57) variables -> . variable
+    (58) variable -> . ID
+
+    ID              shift and go to state 47
+
+    variables                      shift and go to state 31
+    variable                       shift and go to state 32
+
+state 71
+
+    (42) formals -> formal_param , formals .
+
+    )               reduce using rule 42 (formals -> formal_param , formals .)
+
+
+state 72
+
+    (12) method_decl -> modifier VOID ID ( formals ) . block
+    (16) block -> . { stmts }
+    (17) block -> . { }
+
+    {               shift and go to state 50
+
+    block                          shift and go to state 95
+
+state 73
+
+    (13) method_decl -> modifier VOID ID ( ) block .
+
+    PUBLIC          reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    PRIVATE         reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    VOID            reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    ID              reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    INT             reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    FLOAT           reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    BOOLEAN         reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    STATIC          reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+    }               reduce using rule 13 (method_decl -> modifier VOID ID ( ) block .)
+
+
+state 74
+
+    (10) method_decl -> modifier type ID ( formals ) block .
+
+    PUBLIC          reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    PRIVATE         reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    VOID            reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    ID              reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    INT             reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    FLOAT           reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    BOOLEAN         reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    STATIC          reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+    }               reduce using rule 10 (method_decl -> modifier type ID ( formals ) block .)
+
+
+state 75
+
+    (16) block -> { stmts } .
+
+    PUBLIC          reduce using rule 16 (block -> { stmts } .)
+    PRIVATE         reduce using rule 16 (block -> { stmts } .)
+    VOID            reduce using rule 16 (block -> { stmts } .)
+    ID              reduce using rule 16 (block -> { stmts } .)
+    INT             reduce using rule 16 (block -> { stmts } .)
+    FLOAT           reduce using rule 16 (block -> { stmts } .)
+    BOOLEAN         reduce using rule 16 (block -> { stmts } .)
+    STATIC          reduce using rule 16 (block -> { stmts } .)
+    }               reduce using rule 16 (block -> { stmts } .)
+    IF              reduce using rule 16 (block -> { stmts } .)
+    WHILE           reduce using rule 16 (block -> { stmts } .)
+    FOR             reduce using rule 16 (block -> { stmts } .)
+    RETURN          reduce using rule 16 (block -> { stmts } .)
+    BREAK           reduce using rule 16 (block -> { stmts } .)
+    CONTINUE        reduce using rule 16 (block -> { stmts } .)
+    ;               reduce using rule 16 (block -> { stmts } .)
+    {               reduce using rule 16 (block -> { stmts } .)
+    ELSE            reduce using rule 16 (block -> { stmts } .)
+
+
+state 76
+
+    (18) stmts -> stmt stmts .
+
+    }               reduce using rule 18 (stmts -> stmt stmts .)
+
+
+state 77
+
+    (20) stmt -> IF ( . expr ) stmt ELSE stmt
+    (21) stmt -> IF ( . expr ) stmt
+    (30) expr -> . primary
+    (31) primary -> . literal
+    (32) primary -> . THIS
+    (33) primary -> . SUPER
+    (34) primary -> . ( expr )
+    (35) primary -> . NEW ID ( )
+    (36) literal -> . INTEGER_CONST
+    (37) literal -> . FLOAT_CONST
+    (38) literal -> . STRING_CONST
+    (39) literal -> . NULL
+    (40) literal -> . TRUE
+    (41) literal -> . FALSE
+
+    THIS            shift and go to state 83
+    SUPER           shift and go to state 84
+    (               shift and go to state 85
+    NEW             shift and go to state 86
+    INTEGER_CONST   shift and go to state 87
+    FLOAT_CONST     shift and go to state 88
+    STRING_CONST    shift and go to state 89
+    NULL            shift and go to state 90
+    TRUE            shift and go to state 91
+    FALSE           shift and go to state 92
+
+    expr                           shift and go to state 96
+    primary                        shift and go to state 81
+    literal                        shift and go to state 82
+
+state 78
+
+    (22) stmt -> WHILE ( . expr ) stmt
+    (30) expr -> . primary
+    (31) primary -> . literal
+    (32) primary -> . THIS
+    (33) primary -> . SUPER
+    (34) primary -> . ( expr )
+    (35) primary -> . NEW ID ( )
+    (36) literal -> . INTEGER_CONST
+    (37) literal -> . FLOAT_CONST
+    (38) literal -> . STRING_CONST
+    (39) literal -> . NULL
+    (40) literal -> . TRUE
+    (41) literal -> . FALSE
+
+    THIS            shift and go to state 83
+    SUPER           shift and go to state 84
+    (               shift and go to state 85
+    NEW             shift and go to state 86
+    INTEGER_CONST   shift and go to state 87
+    FLOAT_CONST     shift and go to state 88
+    STRING_CONST    shift and go to state 89
+    NULL            shift and go to state 90
+    TRUE            shift and go to state 91
+    FALSE           shift and go to state 92
+
+    expr                           shift and go to state 97
+    primary                        shift and go to state 81
+    literal                        shift and go to state 82
+
+state 79
+
+    (23) stmt -> FOR ( . ; expr ; ) stmt
+
+    ;               shift and go to state 98
+
+
+state 80
+
+    (24) stmt -> RETURN expr . ;
+
+    ;               shift and go to state 99
+
+
+state 81
+
+    (30) expr -> primary .
+
+    ;               reduce using rule 30 (expr -> primary .)
+    )               reduce using rule 30 (expr -> primary .)
+
+
+state 82
+
+    (31) primary -> literal .
+
+    ;               reduce using rule 31 (primary -> literal .)
+    )               reduce using rule 31 (primary -> literal .)
+
+
+state 83
+
+    (32) primary -> THIS .
+
+    ;               reduce using rule 32 (primary -> THIS .)
+    )               reduce using rule 32 (primary -> THIS .)
+
+
+state 84
+
+    (33) primary -> SUPER .
+
+    ;               reduce using rule 33 (primary -> SUPER .)
+    )               reduce using rule 33 (primary -> SUPER .)
+
+
+state 85
+
+    (34) primary -> ( . expr )
+    (30) expr -> . primary
+    (31) primary -> . literal
+    (32) primary -> . THIS
+    (33) primary -> . SUPER
+    (34) primary -> . ( expr )
+    (35) primary -> . NEW ID ( )
+    (36) literal -> . INTEGER_CONST
+    (37) literal -> . FLOAT_CONST
+    (38) literal -> . STRING_CONST
+    (39) literal -> . NULL
+    (40) literal -> . TRUE
+    (41) literal -> . FALSE
+
+    THIS            shift and go to state 83
+    SUPER           shift and go to state 84
+    (               shift and go to state 85
+    NEW             shift and go to state 86
+    INTEGER_CONST   shift and go to state 87
+    FLOAT_CONST     shift and go to state 88
+    STRING_CONST    shift and go to state 89
+    NULL            shift and go to state 90
+    TRUE            shift and go to state 91
+    FALSE           shift and go to state 92
+
+    expr                           shift and go to state 100
+    primary                        shift and go to state 81
+    literal                        shift and go to state 82
+
+state 86
+
+    (35) primary -> NEW . ID ( )
+
+    ID              shift and go to state 101
+
+
+state 87
+
+    (36) literal -> INTEGER_CONST .
+
+    ;               reduce using rule 36 (literal -> INTEGER_CONST .)
+    )               reduce using rule 36 (literal -> INTEGER_CONST .)
+
+
+state 88
+
+    (37) literal -> FLOAT_CONST .
+
+    ;               reduce using rule 37 (literal -> FLOAT_CONST .)
+    )               reduce using rule 37 (literal -> FLOAT_CONST .)
+
+
+state 89
+
+    (38) literal -> STRING_CONST .
+
+    ;               reduce using rule 38 (literal -> STRING_CONST .)
+    )               reduce using rule 38 (literal -> STRING_CONST .)
+
+
+state 90
+
+    (39) literal -> NULL .
+
+    ;               reduce using rule 39 (literal -> NULL .)
+    )               reduce using rule 39 (literal -> NULL .)
+
+
+state 91
+
+    (40) literal -> TRUE .
+
+    ;               reduce using rule 40 (literal -> TRUE .)
+    )               reduce using rule 40 (literal -> TRUE .)
+
+
+state 92
+
+    (41) literal -> FALSE .
+
+    ;               reduce using rule 41 (literal -> FALSE .)
+    )               reduce using rule 41 (literal -> FALSE .)
+
+
+state 93
+
+    (25) stmt -> BREAK ; .
+
+    IF              reduce using rule 25 (stmt -> BREAK ; .)
+    WHILE           reduce using rule 25 (stmt -> BREAK ; .)
+    FOR             reduce using rule 25 (stmt -> BREAK ; .)
+    RETURN          reduce using rule 25 (stmt -> BREAK ; .)
+    BREAK           reduce using rule 25 (stmt -> BREAK ; .)
+    CONTINUE        reduce using rule 25 (stmt -> BREAK ; .)
+    ;               reduce using rule 25 (stmt -> BREAK ; .)
+    {               reduce using rule 25 (stmt -> BREAK ; .)
+    INT             reduce using rule 25 (stmt -> BREAK ; .)
+    FLOAT           reduce using rule 25 (stmt -> BREAK ; .)
+    BOOLEAN         reduce using rule 25 (stmt -> BREAK ; .)
+    ID              reduce using rule 25 (stmt -> BREAK ; .)
+    }               reduce using rule 25 (stmt -> BREAK ; .)
+    ELSE            reduce using rule 25 (stmt -> BREAK ; .)
+
+
+state 94
+
+    (26) stmt -> CONTINUE ; .
+
+    IF              reduce using rule 26 (stmt -> CONTINUE ; .)
+    WHILE           reduce using rule 26 (stmt -> CONTINUE ; .)
+    FOR             reduce using rule 26 (stmt -> CONTINUE ; .)
+    RETURN          reduce using rule 26 (stmt -> CONTINUE ; .)
+    BREAK           reduce using rule 26 (stmt -> CONTINUE ; .)
+    CONTINUE        reduce using rule 26 (stmt -> CONTINUE ; .)
+    ;               reduce using rule 26 (stmt -> CONTINUE ; .)
+    {               reduce using rule 26 (stmt -> CONTINUE ; .)
+    INT             reduce using rule 26 (stmt -> CONTINUE ; .)
+    FLOAT           reduce using rule 26 (stmt -> CONTINUE ; .)
+    BOOLEAN         reduce using rule 26 (stmt -> CONTINUE ; .)
+    ID              reduce using rule 26 (stmt -> CONTINUE ; .)
+    }               reduce using rule 26 (stmt -> CONTINUE ; .)
+    ELSE            reduce using rule 26 (stmt -> CONTINUE ; .)
+
+
+state 95
+
+    (12) method_decl -> modifier VOID ID ( formals ) block .
+
+    PUBLIC          reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    PRIVATE         reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    VOID            reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    ID              reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    INT             reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    FLOAT           reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    BOOLEAN         reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    STATIC          reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+    }               reduce using rule 12 (method_decl -> modifier VOID ID ( formals ) block .)
+
+
+state 96
+
+    (20) stmt -> IF ( expr . ) stmt ELSE stmt
+    (21) stmt -> IF ( expr . ) stmt
+
+    )               shift and go to state 102
+
+
+state 97
+
+    (22) stmt -> WHILE ( expr . ) stmt
+
+    )               shift and go to state 103
+
+
+state 98
+
+    (23) stmt -> FOR ( ; . expr ; ) stmt
+    (30) expr -> . primary
+    (31) primary -> . literal
+    (32) primary -> . THIS
+    (33) primary -> . SUPER
+    (34) primary -> . ( expr )
+    (35) primary -> . NEW ID ( )
+    (36) literal -> . INTEGER_CONST
+    (37) literal -> . FLOAT_CONST
+    (38) literal -> . STRING_CONST
+    (39) literal -> . NULL
+    (40) literal -> . TRUE
+    (41) literal -> . FALSE
+
+    THIS            shift and go to state 83
+    SUPER           shift and go to state 84
+    (               shift and go to state 85
+    NEW             shift and go to state 86
+    INTEGER_CONST   shift and go to state 87
+    FLOAT_CONST     shift and go to state 88
+    STRING_CONST    shift and go to state 89
+    NULL            shift and go to state 90
+    TRUE            shift and go to state 91
+    FALSE           shift and go to state 92
+
+    expr                           shift and go to state 104
+    primary                        shift and go to state 81
+    literal                        shift and go to state 82
+
+state 99
+
+    (24) stmt -> RETURN expr ; .
+
+    IF              reduce using rule 24 (stmt -> RETURN expr ; .)
+    WHILE           reduce using rule 24 (stmt -> RETURN expr ; .)
+    FOR             reduce using rule 24 (stmt -> RETURN expr ; .)
+    RETURN          reduce using rule 24 (stmt -> RETURN expr ; .)
+    BREAK           reduce using rule 24 (stmt -> RETURN expr ; .)
+    CONTINUE        reduce using rule 24 (stmt -> RETURN expr ; .)
+    ;               reduce using rule 24 (stmt -> RETURN expr ; .)
+    {               reduce using rule 24 (stmt -> RETURN expr ; .)
+    INT             reduce using rule 24 (stmt -> RETURN expr ; .)
+    FLOAT           reduce using rule 24 (stmt -> RETURN expr ; .)
+    BOOLEAN         reduce using rule 24 (stmt -> RETURN expr ; .)
+    ID              reduce using rule 24 (stmt -> RETURN expr ; .)
+    }               reduce using rule 24 (stmt -> RETURN expr ; .)
+    ELSE            reduce using rule 24 (stmt -> RETURN expr ; .)
+
+
+state 100
+
+    (34) primary -> ( expr . )
+
+    )               shift and go to state 105
+
+
+state 101
+
+    (35) primary -> NEW ID . ( )
+
+    (               shift and go to state 106
+
+
+state 102
+
+    (20) stmt -> IF ( expr ) . stmt ELSE stmt
+    (21) stmt -> IF ( expr ) . stmt
+    (20) stmt -> . IF ( expr ) stmt ELSE stmt
+    (21) stmt -> . IF ( expr ) stmt
+    (22) stmt -> . WHILE ( expr ) stmt
+    (23) stmt -> . FOR ( ; expr ; ) stmt
+    (24) stmt -> . RETURN expr ;
+    (25) stmt -> . BREAK ;
+    (26) stmt -> . CONTINUE ;
+    (27) stmt -> . block
+    (28) stmt -> . var_decl
+    (29) stmt -> . ;
+    (16) block -> . { stmts }
+    (17) block -> . { }
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    IF              shift and go to state 61
+    WHILE           shift and go to state 62
+    FOR             shift and go to state 63
+    RETURN          shift and go to state 65
+    BREAK           shift and go to state 66
+    CONTINUE        shift and go to state 67
+    ;               shift and go to state 64
+    {               shift and go to state 50
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    stmt                           shift and go to state 107
+    block                          shift and go to state 68
+    var_decl                       shift and go to state 69
+    type                           shift and go to state 70
+
+state 103
+
+    (22) stmt -> WHILE ( expr ) . stmt
+    (20) stmt -> . IF ( expr ) stmt ELSE stmt
+    (21) stmt -> . IF ( expr ) stmt
+    (22) stmt -> . WHILE ( expr ) stmt
+    (23) stmt -> . FOR ( ; expr ; ) stmt
+    (24) stmt -> . RETURN expr ;
+    (25) stmt -> . BREAK ;
+    (26) stmt -> . CONTINUE ;
+    (27) stmt -> . block
+    (28) stmt -> . var_decl
+    (29) stmt -> . ;
+    (16) block -> . { stmts }
+    (17) block -> . { }
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    IF              shift and go to state 61
+    WHILE           shift and go to state 62
+    FOR             shift and go to state 63
+    RETURN          shift and go to state 65
+    BREAK           shift and go to state 66
+    CONTINUE        shift and go to state 67
+    ;               shift and go to state 64
+    {               shift and go to state 50
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    stmt                           shift and go to state 108
+    block                          shift and go to state 68
+    var_decl                       shift and go to state 69
+    type                           shift and go to state 70
+
+state 104
+
+    (23) stmt -> FOR ( ; expr . ; ) stmt
+
+    ;               shift and go to state 109
+
+
+state 105
+
+    (34) primary -> ( expr ) .
+
+    ;               reduce using rule 34 (primary -> ( expr ) .)
+    )               reduce using rule 34 (primary -> ( expr ) .)
+
+
+state 106
+
+    (35) primary -> NEW ID ( . )
+
+    )               shift and go to state 110
+
+
+state 107
+
+    (20) stmt -> IF ( expr ) stmt . ELSE stmt
+    (21) stmt -> IF ( expr ) stmt .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 111
+    IF              reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    WHILE           reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    FOR             reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    RETURN          reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    BREAK           reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    CONTINUE        reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    ;               reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    {               reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    INT             reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    FLOAT           reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    BOOLEAN         reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    ID              reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+    }               reduce using rule 21 (stmt -> IF ( expr ) stmt .)
+
+  ! ELSE            [ reduce using rule 21 (stmt -> IF ( expr ) stmt .) ]
+
+
+state 108
+
+    (22) stmt -> WHILE ( expr ) stmt .
+
+    IF              reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    WHILE           reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    FOR             reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    RETURN          reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    BREAK           reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    CONTINUE        reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    ;               reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    {               reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    INT             reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    FLOAT           reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    BOOLEAN         reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    ID              reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    }               reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+    ELSE            reduce using rule 22 (stmt -> WHILE ( expr ) stmt .)
+
+
+state 109
+
+    (23) stmt -> FOR ( ; expr ; . ) stmt
+
+    )               shift and go to state 112
+
+
+state 110
+
+    (35) primary -> NEW ID ( ) .
+
+    ;               reduce using rule 35 (primary -> NEW ID ( ) .)
+    )               reduce using rule 35 (primary -> NEW ID ( ) .)
+
+
+state 111
+
+    (20) stmt -> IF ( expr ) stmt ELSE . stmt
+    (20) stmt -> . IF ( expr ) stmt ELSE stmt
+    (21) stmt -> . IF ( expr ) stmt
+    (22) stmt -> . WHILE ( expr ) stmt
+    (23) stmt -> . FOR ( ; expr ; ) stmt
+    (24) stmt -> . RETURN expr ;
+    (25) stmt -> . BREAK ;
+    (26) stmt -> . CONTINUE ;
+    (27) stmt -> . block
+    (28) stmt -> . var_decl
+    (29) stmt -> . ;
+    (16) block -> . { stmts }
+    (17) block -> . { }
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    IF              shift and go to state 61
+    WHILE           shift and go to state 62
+    FOR             shift and go to state 63
+    RETURN          shift and go to state 65
+    BREAK           shift and go to state 66
+    CONTINUE        shift and go to state 67
+    ;               shift and go to state 64
+    {               shift and go to state 50
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    stmt                           shift and go to state 113
+    block                          shift and go to state 68
+    var_decl                       shift and go to state 69
+    type                           shift and go to state 70
+
+state 112
+
+    (23) stmt -> FOR ( ; expr ; ) . stmt
+    (20) stmt -> . IF ( expr ) stmt ELSE stmt
+    (21) stmt -> . IF ( expr ) stmt
+    (22) stmt -> . WHILE ( expr ) stmt
+    (23) stmt -> . FOR ( ; expr ; ) stmt
+    (24) stmt -> . RETURN expr ;
+    (25) stmt -> . BREAK ;
+    (26) stmt -> . CONTINUE ;
+    (27) stmt -> . block
+    (28) stmt -> . var_decl
+    (29) stmt -> . ;
+    (16) block -> . { stmts }
+    (17) block -> . { }
+    (51) var_decl -> . type variables ;
+    (52) type -> . INT
+    (53) type -> . FLOAT
+    (54) type -> . BOOLEAN
+    (55) type -> . ID
+
+    IF              shift and go to state 61
+    WHILE           shift and go to state 62
+    FOR             shift and go to state 63
+    RETURN          shift and go to state 65
+    BREAK           shift and go to state 66
+    CONTINUE        shift and go to state 67
+    ;               shift and go to state 64
+    {               shift and go to state 50
+    INT             shift and go to state 26
+    FLOAT           shift and go to state 27
+    BOOLEAN         shift and go to state 28
+    ID              shift and go to state 38
+
+    stmt                           shift and go to state 114
+    block                          shift and go to state 68
+    var_decl                       shift and go to state 69
+    type                           shift and go to state 70
+
+state 113
+
+    (20) stmt -> IF ( expr ) stmt ELSE stmt .
+
+    IF              reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    WHILE           reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    FOR             reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    RETURN          reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    BREAK           reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    CONTINUE        reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    ;               reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    {               reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    INT             reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    FLOAT           reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    BOOLEAN         reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    ID              reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    }               reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+    ELSE            reduce using rule 20 (stmt -> IF ( expr ) stmt ELSE stmt .)
+
+
+state 114
+
+    (23) stmt -> FOR ( ; expr ; ) stmt .
+
+    IF              reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    WHILE           reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    FOR             reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    RETURN          reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    BREAK           reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    CONTINUE        reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    ;               reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    {               reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    INT             reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    FLOAT           reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    BOOLEAN         reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    ID              reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    }               reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+    ELSE            reduce using rule 23 (stmt -> FOR ( ; expr ; ) stmt .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 107 resolved as shift

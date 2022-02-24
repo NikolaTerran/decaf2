@@ -1,1 +1,5 @@
-class dummy extends haha
+class dummy extends haha{
+ public dummy(){while(true){break;}}
+ public sss(){if(null){ int x;}else{}if(false){}}
+ void zz(int i){return "hello";}
+}
